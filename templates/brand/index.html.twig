@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nos marques{% endblock %}
+
+{% block body %}
+
+    {% if brands is not empty %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Description</th>
+                <th>Marques</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for b in brands %}
+            <tr>
+                <td>{{b.name}}</td>
+                <td>{{b.description}}</td>
+                <td>{{b.models|length}}</td>
+                <td>
+                    <a href="{{ path('brand_consult', {'id': b.id}) }}" title="Modifier la marque">Modifier</a>
+                    <a href="{{ path('brand_delete', {'id': b.id}) }}" title="Supprimer la marque">Supprimer</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+        <p>Il n'y a pas de marques.</p>
+    {% endif %}
+
+    <h2>Ajouter une marque:</h2>
+    {{form(formCreate)}}
+{% endblock %}

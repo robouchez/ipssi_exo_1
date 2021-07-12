@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>{{model.name}}</h1>
+    <p>{{model.vehicleType}}</p>
+    <p>{{model.price}}</p>
+    <p>{{model.age}}</p>
+    <p>{{model.brand}}</p>
+
+    <h2>Modifier:</h2>
+    {{form(formUpdate)}}
+{% endblock %}

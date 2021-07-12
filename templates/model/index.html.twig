@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nos modèles{% endblock %}
+
+{% block body %}
+
+    {% if models is not empty %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Type de véhicule</th>
+                <th>Prix</th>
+                <th>Age</th>
+                <th>Marque</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for m in models %}
+            <tr>
+                <td>{{m.name}}</td>
+                <td>{{m.vehicleType}}</td>
+                <td>{{m.price}}</td>
+                <td>{{m.age}}</td>
+                <td>{{m.brand}}</td>
+                <td>
+                    <a href="{{ path('model_consult', {'id': m.id}) }}" title="Modifier le modèle">Modifier</a>
+                    <a href="{{ path('model_delete', {'id': m.id}) }}" title="Supprimer le modèle">Supprimer</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+        <p>Il n'y a pas de modèle.</p>
+    {% endif %}
+
+    <h2>Ajouter un modèle:</h2>
+    {{form(formCreate)}}
+{% endblock %}
